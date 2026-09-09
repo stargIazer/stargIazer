@@ -2,12 +2,12 @@ import random, re
 from pathlib import Path
 
 
-W, H, ND = 160, 40, 400
+W, H, ND, XSC = 67, 67, 200, 2
 README = Path("README.md")
 START = "<!-- TOTD:BEGIN -->"
 END = "<!-- TOTD:END -->"
 DIR = [(0, -1, 1, 4), (1, 0, 2, 8), (0, 1, 4, 1), (-1, 0, 8, 2)]
-BOX = " ╵╶└╷│┌├╴┘─┴┐┤┬┼"
+BOX = " ┃━┗┃┃┏┣━┛━┻┓┫┳╋"
 
 
 def gt():
@@ -46,14 +46,17 @@ def gt():
     mny, mxy = min(ys), max(ys)
     lns = []
 
-    ## add left margin
+    ## add left margin + apply scale
     for y in range(mny, mxy + 1):
         ln = " "
         for x in range(mnx, mxx + 1):
+            cell = grid[y][x]
             if (x, y) == root:
-                ln += "●"
+                ln += "@"
             else:
-                ln += BOX[grid[y][x]]
+                ln += BOX[cell]
+            if x < mxx:
+                ln += ("━" if cell & 2 else " ") * (XSC - 1)
         lns.append(ln.rstrip())
     return "\n".join(lns)
 
