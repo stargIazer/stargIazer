@@ -1,0 +1,31 @@
+name: ToTD Update
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  upd-tree:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup py
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Gen tree
+        run: python scripts/gen.py
+      - name: Commit
+        run: |
+          git config user.name "stargIazer"
+          git config user.email "233498749+stargIazer@users.noreply.github.com"
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "[INFO] no changes"
+            exit 0
+          fi
+          git commit -m "[job] gen totd"
+          git push
