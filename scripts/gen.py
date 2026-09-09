@@ -2,7 +2,7 @@ import random, re
 from pathlib import Path
 
 
-W, H, ND = 100, 40, 275
+W, H, ND = 160, 40, 400
 README = Path("README.md")
 START = "<!-- TOTD:BEGIN -->"
 END = "<!-- TOTD:END -->"
