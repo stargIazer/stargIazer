@@ -7,7 +7,7 @@ README = Path("README.md")
 START = "<!-- TOTD:BEGIN -->"
 END = "<!-- TOTD:END -->"
 DIR = [(0, -1, 1, 4), (1, 0, 2, 8), (0, 1, 4, 1), (-1, 0, 8, 2)]
-BOX = " ┃━┗┃┃┏┣━┛━┻┓┫┳╋"
+BOX = " ╹━┗╻┃┏┣━┛━┻┓┫┳╋"
 
 
 def gt():
